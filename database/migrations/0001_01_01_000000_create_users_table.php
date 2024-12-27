@@ -14,12 +14,14 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('email')->nullable();
             $table->string('hp')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('password_not_hashed');
             $table->string('role')->default('user');
             $table->string('is_paired')->nullable();
-            $table->enum('jk', ['L', 'P'])->nullable();
+            $table->enum('jk', ['l', 'p'])->nullable();
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();

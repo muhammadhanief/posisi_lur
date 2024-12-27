@@ -17,10 +17,13 @@ return new class extends Migration
             $table->foreignId('kegiatan_id')->constrained('kegiatans')->onDelete('cascade');
             $table->string('kd_full'); // Kolom untuk menyimpan kd_full
             $table->foreign('kd_full')->references('kd_full')->on('wilayah_terkecils')->onDelete('cascade'); // Tambahkan FK ke wilayah_terkecils
-            $table->string('hp')->nullable();
-            $table->string('petugas_id')->nullable(); //ini mau diisi 33020202SNLIK
+            $table->string('hp_pml')->nullable();
+            $table->string('petugas_id'); //ini mau diisi 33020202SNLIK
             $table->year('tahun');
             $table->timestamps();
+
+            // Kombinasi unique constraint
+            $table->unique(['kegiatan_id', 'kd_full', 'user_id'], 'unique_kegiatan_kd_user');
         });
     }
 

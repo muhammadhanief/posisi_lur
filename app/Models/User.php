@@ -27,8 +27,15 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'email',
+        'hp',
+        // 'email',
         'password',
+        'password_not_hashed',
+        'role',
+        'is_paired',
+        'jk',
+
+
     ];
 
     /**
@@ -63,5 +70,12 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+
+    // Model User
+    public function ppl()
+    {
+        return $this->hasMany(UsersKegiatan::class, 'hp_pml', 'hp');
     }
 }

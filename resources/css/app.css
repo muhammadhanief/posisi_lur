@@ -6,3 +6,16 @@
 [x-cloak] {
     display: none;
 }
+
+/* CSS untuk SweetAlert */
+.swal2-confirm {
+    background-color: black; /* Warna latar belakang tombol */
+    color: black; /* Warna teks tombol */
+    border: black; /* Menghapus border */
+    padding: 10px 20px; /* Padding untuk ukuran tombol */
+    border-radius: 5px; /* Sudut tombol yang membulat */
+}
+
+.swal2-confirm:hover {
+    background-color: #45a049; /* Warna tombol saat hover */
+}

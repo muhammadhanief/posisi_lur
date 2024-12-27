@@ -11,6 +11,7 @@
     "require": {
         "php": "^8.2",
         "dasundev/livewire-dropzone": "^2.0",
+        "doctrine/dbal": "^4.2",
         "jantinnerezo/livewire-alert": "^3.0",
         "laravel/framework": "^11.31",
         "laravel/jetstream": "^5.3",

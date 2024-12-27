@@ -33,21 +33,21 @@
     @stack('styles')
 </head>
 
-<body class="font-sans antialiased">
-    <div>
-        @include('layouts.navigation')
-    </div>
-    <div>
-        {{-- <div class="flex flex-col flex-1 w-full"> --}}
-        {{-- ini navbar --}}
-        @include('layouts.menu')
-        {{-- <main class="h-full overflow-y-auto"> --}}
-        {{-- bg-gray-100 --}}
-        <main class="flex-1 p-2 bg-orange-300">
+<body class="font-sans antialiased bg-orange-300">
+    <div class="flex flex-col min-h-screen">
+        <div>
+            @include('layouts.navigation')
+        </div>
+        <div>
+            {{-- Ini navbar --}}
+            @include('layouts.menu')
+        </div>
+        <main class="flex-1 py-2 mx-6">
             {{ $slot }}
         </main>
-    </div>
 
+        @include('layouts.footer')
+    </div>
 
     {{-- </div> --}}
 

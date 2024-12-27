@@ -1,43 +1,165 @@
 <x-slot:title>Manajemen Master</x-slot:title>
-<div class="container gap-2 mx-auto md:flex-row">
-    <div id="" class="flex-col flex-1 bg-white border border-gray-200 rounded-lg dark:bg-gray-900">
-        {{-- start kode kegiatan --}}
-        <div class="px-4 py-2 mb-2 text-sm bg-white rounded-t-lg shadow-md dark:bg-gray-800">
-            <h4 class="py-1 text-lg font-semibold text-gray-600 dark:text-gray-300">
-                Unggah Master Wilayah
+<div class="gap-2 mx-auto md:flex-row">
+    {{-- Master Wilayah --}}
+    {{-- <p>{{ $locale }}</p> --}}
+    <div class="flex-col flex-1 mt-4 bg-white border border-gray-200 rounded-lg dark:bg-gray-900">
+        <div class="flex flex-row justify-between p-2 px-4 mx-6 text-sm bg-white rounded-lg dark:bg-gray-800">
+            <h4 class="py-1 text-xl font-semibold text-gray-600 dark:text-gray-300">
+                Master Wilayah
             </h4>
-            <div class="pb-4 mx-auto">
-                <label for="countries" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Pilih tipe
-                    wilayah terkecil</label>
-                <select id="countries" wire:model.live='wilayah_terkecil_type_id'
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    <option value="" selected>Pilih Jenis Wilayah</option>
-                    @foreach ($wilayah_terkecil_types as $wilayah_terkecil_type)
-                        <option value="{{ $wilayah_terkecil_type->id }}">{{ $wilayah_terkecil_type->name }}</option>
-                    @endforeach
-                </select>
-                <x-input-error for="wilayah_terkecil_type_id" />
-            </div>
-
-            <div class="pb-2 mx-auto">
-
-                <label for="countries" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Unggah
-                    file</label>
-                <a href="{{ asset('file/Template Master Wilayah.xlsx') }}"
-                    class="text-xs font-medium text-blue-600 dark:text-blue-500 hover:underline" download>
-                    Klik untuk unduh templat
-                </a>
-                <input wire:model.live='fileImport'
-                    class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                    aria-describedby="file_input_help" id="file_input" type="file">
-                <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">Format file .xlsx</p>
-                <x-input-error for="fileImport" />
-            </div>
-            <button wire:click="import" type="button"
-                class="px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Impor</button>
-
+            <!-- Modal toggle -->
+            <button data-modal-target="modal-master-wilayah" data-modal-toggle="modal-master-wilayah"
+                class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                type="button">
+                + Tambah Master Wilayah
+            </button>
         </div>
+        <hr>
+        <div class="p-2 px-4 pb-4 text-sm bg-white rounded-lg shadow-md dark:bg-gray-800">
+            {{-- tabel --}}
+            <div class="relative mt-2 overflow-x-auto shadow-md sm:rounded-lg">
+                <table wire:ignore.self
+                    class="w-full text-sm text-left text-gray-500 rtl:text-right dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                No.
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Kode Provinsi
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Kode Kabkot
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Kode Kecamatan
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Kode Desa
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Kode Wilayah Terkecil
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Kode Wilayah Full
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Nama Wilayah Terkecil
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Aksi
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($wilayah_terkecils as $wilayah_terkecil)
+                            <tr wire:key='{{ $wilayah_terkecil->id }}'
+                                class="border-b odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 dark:border-gray-700">
+                                <th scope="row"
+                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {{ $wilayah_terkecil->id }}
+                                </th>
+                                <td class="px-6 py-4">
+                                    {{ $wilayah_terkecil->kd_provinsi }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $wilayah_terkecil->kd_kabkot }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $wilayah_terkecil->kd_kecamatan }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $wilayah_terkecil->kd_desa }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $wilayah_terkecil->kd_wilayah_terkecil }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $wilayah_terkecil->kd_full }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $wilayah_terkecil->nm_wilayah_terkecil }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    <a href="#"
+                                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline"></a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                <div class="p-2 ">
+                    {{ $wilayah_terkecils->links() }}
+                </div>
+            </div>
+        </div>
+        @include('livewire.includes.modal-master-wilayah')
     </div>
-    @include('livewire.includes.search-master-wilayah')
-    @include('livewire.includes.master-kegiatan')
+
+    {{-- master kegiatan --}}
+    <div class="flex-col flex-1 mt-4 bg-white border border-gray-200 rounded-lg dark:bg-gray-900">
+        <div class="flex flex-row justify-between p-2 px-4 mx-6 text-sm bg-white rounded-lg dark:bg-gray-800">
+            <h4 class="py-1 text-xl font-semibold text-gray-600 dark:text-gray-300">
+                Master Kegiatan
+            </h4>
+            <!-- Modal toggle -->
+            <button data-modal-target="modal-master-kegiatan" data-modal-toggle="modal-master-kegiatan"
+                class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                type="button">
+                + Tambah Master Kegiatan
+            </button>
+        </div>
+        <hr>
+        <div class="p-2 px-4 pb-4 text-sm bg-white rounded-lg shadow-md dark:bg-gray-800">
+            {{-- tabel --}}
+            <div class="relative mt-2 overflow-x-auto shadow-md sm:rounded-lg">
+                <table wire:ignore.self
+                    class="w-full text-sm text-left text-gray-500 rtl:text-right dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                No.
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Nama Kegiatan
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Deskripsi
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Aksi
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($kegiatans as $kegiatan)
+                            <tr
+                                class="border-b odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 dark:border-gray-700">
+                                <th scope="row"
+                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {{ $kegiatan->id }}
+                                </th>
+                                <td class="px-6 py-4">
+                                    {{ $kegiatan->name }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $kegiatan->description }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    <a href="#"
+                                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline"></a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                <div class="p-2 ">
+                    {{ $kegiatans->links() }}
+                </div>
+            </div>
+        </div>
+        @include('livewire.includes.modal-master-kegiatan')
+    </div>
+
+
 </div>

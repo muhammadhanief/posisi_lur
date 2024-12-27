@@ -1,9 +1,13 @@
-<div class="container flex flex-col gap-2 mx-auto md:flex-row">
+<x-slot:title>Monitoring Petugas</x-slot:title>
+<div class="flex flex-col gap-2 mx-auto md:flex-row">
     <!-- Bagian 2/5 -->
     <div id="kiri" class="flex-col bg-white border border-gray-200 rounded-lg dark:bg-gray-900">
-        {{-- <button wire:click='dd'>Munculkan peta sls</button> --}}
+        <button wire:click='coba'>Munculkan peta sls</button>
+        <button wire:click='dd'>DDDD</button>
+
         {{-- <button wire:click='ddasli'>Munculkan debug</button> --}}
         {{-- start kode kegiatan --}}
+        {{-- <p wire:click='getPolygonsForAllUsers'>getPolygonsForAllUsers</p> --}}
         <div class="px-4 py-2 mb-2 text-sm bg-white rounded-t-lg shadow-md dark:bg-gray-800">
             <h4 class="px-2 py-1 text-lg font-semibold text-gray-600 dark:text-gray-300">
                 Filter Petugas yang Akan Ditampilkan
@@ -40,14 +44,14 @@
                                     semua</label>
                             </div>
                         </li>
-                        @foreach ($kode_kegiatans as $kode_kegiatan)
+                        @foreach ($kegiatans as $kegiatan)
                             <li>
                                 <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
                                     <input wire:model.live='selectedKodeKegiatan' id="pelabuhan-{{ $loop->index }}"
-                                        type="checkbox" value="{{ $kode_kegiatan }}"
+                                        type="checkbox" value={{ $kegiatan->id }}
                                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                     <label for="pelabuhan-{{ $loop->index }}"
-                                        class="w-full text-xs font-medium text-gray-900 rounded ms-2 dark:text-gray-300">{{ $kode_kegiatan }}</label>
+                                        class="w-full text-xs font-medium text-gray-900 rounded ms-2 dark:text-gray-300">{{ $kegiatan->name }}</label>
                                 </div>
                             </li>
                         @endforeach
@@ -58,7 +62,7 @@
         {{-- end kode kegiatan --}}
 
         {{-- start kode prov --}}
-        <div class="px-4 pb-2 mb-2 text-sm bg-white rounded-lg shadow-md dark:bg-gray-800">
+        {{-- <div class="px-4 pb-2 mb-2 text-sm bg-white rounded-lg shadow-md dark:bg-gray-800">
             <p class="pb-1 text-gray-700 dark:text-gray-400">
                 Pilih Provinsi
             </p>
@@ -103,7 +107,7 @@
                     </ul>
                 </div>
             </div>
-        </div>
+        </div> --}}
         {{-- end prov --}}
 
         {{-- start kode kabkota --}}
@@ -142,10 +146,11 @@
                             <li>
                                 <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
                                     <input wire:model.live='selectedKodeKabkota' id="pelabuhan-{{ $loop->index }}"
-                                        type="checkbox" value="{{ $kode_kabkota }}"
+                                        type="checkbox" value="{{ $kode_kabkota->kd_kabkot }}"
                                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                     <label for="pelabuhan-{{ $loop->index }}"
-                                        class="w-full text-xs font-medium text-gray-900 rounded ms-2 dark:text-gray-300">{{ $kode_kabkota }}</label>
+                                        class="w-full text-xs font-medium text-gray-900 rounded ms-2 dark:text-gray-300">{{ $kode_kabkota->kd_kabkot }}
+                                        {{ $kode_kabkota->nm_kabkot }}</label>
                                 </div>
                             </li>
                         @endforeach
@@ -156,7 +161,7 @@
         {{-- end kabkot --}}
 
         {{-- start kode kecamatan --}}
-        <div class="px-4 pb-2 mb-2 text-sm bg-white rounded-lg shadow-md dark:bg-gray-800">
+        {{-- <div class="px-4 pb-2 mb-2 text-sm bg-white rounded-lg shadow-md dark:bg-gray-800">
             <p class="pb-1 text-gray-700 dark:text-gray-400">
                 Pilih Kecamatan
             </p>
@@ -167,8 +172,8 @@
                     type="button" aria-haspopup="true" aria-expanded="false"
                     onclick="toggleDropdown('dropdownSearchKecamatan');">
                     Kode Kecamatan
-                    <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                        fill="none" viewBox="0 0 20 20">
+                    <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 20 20">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="m1 1 4 4 4-4" />
                     </svg>
@@ -180,32 +185,34 @@
                         <li>
                             <div
                                 class="flex items-center p-2 font-bold rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-                                <input wire:model.live='selectAllKodeKabkota' id="selectAllPelabuhan" type="checkbox"
+                                <input wire:model.live='selectAllKodeKecamatan' id="selectAllPelabuhan"
+                                    type="checkbox"
                                     class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                 <label for="selectAllPelabuhan"
                                     class="w-full text-xs font-medium text-gray-900 rounded ms-2 dark:text-gray-300">Pilih
                                     semua</label>
                             </div>
                         </li>
-                        @foreach ($kode_kabkotas as $kode_kabkota)
+                        @foreach ($kode_kecamatans as $kode_kecamatan)
                             <li>
                                 <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-                                    <input wire:model.live='selectedKodeKabkota' id="pelabuhan-{{ $loop->index }}"
-                                        type="checkbox" value="{{ $kode_kabkota }}"
+                                    <input wire:model.live='selectedKodeKecamatan' id="pelabuhan-{{ $loop->index }}"
+                                        type="checkbox" value="{{ $kode_kecamatan->kd_kecamatan }}"
                                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                     <label for="pelabuhan-{{ $loop->index }}"
-                                        class="w-full text-xs font-medium text-gray-900 rounded ms-2 dark:text-gray-300">{{ $kode_kabkota }}</label>
+                                        class="w-full text-xs font-medium text-gray-900 rounded ms-2 dark:text-gray-300">{{ $kode_kecamatan->kd_kecamatan }}
+                                        {{ $kode_kecamatan->nm_kecamatan }}</label>
                                 </div>
                             </li>
                         @endforeach
                     </ul>
                 </div>
             </div>
-        </div>
+        </div> --}}
         {{-- end kecamatan --}}
 
         {{-- start kode desa --}}
-        <div class="px-4 pb-2 mb-2 text-sm bg-white rounded-lg shadow-md dark:bg-gray-800">
+        {{-- <div class="px-4 pb-2 mb-2 text-sm bg-white rounded-lg shadow-md dark:bg-gray-800">
             <p class="pb-1 text-gray-700 dark:text-gray-400">
                 Pilih Desa
             </p>
@@ -216,8 +223,8 @@
                     type="button" aria-haspopup="true" aria-expanded="false"
                     onclick="toggleDropdown('dropdownSearchDesa');">
                     Kode Desa
-                    <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                        fill="none" viewBox="0 0 20 20">
+                    <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 20 20">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="m1 1 4 4 4-4" />
                     </svg>
@@ -250,11 +257,11 @@
                     </ul>
                 </div>
             </div>
-        </div>
+        </div> --}}
         {{-- end desa --}}
 
         {{-- start wilayah terkecil --}}
-        <div class="px-4 pb-2 mb-2 text-sm bg-white rounded-lg shadow-md dark:bg-gray-800">
+        {{-- <div class="px-4 pb-2 mb-2 text-sm bg-white rounded-lg shadow-md dark:bg-gray-800">
             <p class="pb-1 text-gray-700 dark:text-gray-400">
                 Pilih Wilayah Terkecil
             </p>
@@ -265,8 +272,8 @@
                     type="button" aria-haspopup="true" aria-expanded="false"
                     onclick="toggleDropdown('dropdownSearchWilayahTerkecil');">
                     Kode Desa
-                    <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                        fill="none" viewBox="0 0 20 20">
+                    <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 20 20">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="m1 1 4 4 4-4" />
                     </svg>
@@ -299,11 +306,11 @@
                     </ul>
                 </div>
             </div>
-        </div>
+        </div> --}}
         {{-- end desa --}}
 
         {{-- start kode tim --}}
-        <div class="px-4 pb-2 mb-2 text-sm bg-white rounded-lg shadow-md dark:bg-gray-800">
+        {{-- <div class="px-4 pb-2 mb-2 text-sm bg-white rounded-lg shadow-md dark:bg-gray-800">
             <p class="pb-1 text-gray-700 dark:text-gray-400">
                 Pilih Tim Lapangan
             </p>
@@ -313,8 +320,8 @@
                     type="button" aria-haspopup="true" aria-expanded="false"
                     onclick="toggleDropdown('dropdownSearchTimLapangan');">
                     Kode Tim
-                    <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                        fill="none" viewBox="0 0 20 20">
+                    <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 20 20">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="m1 1 4 4 4-4" />
                     </svg>
@@ -348,11 +355,11 @@
                     </ul>
                 </div>
             </div>
-        </div>
+        </div> --}}
         {{-- end kode tim --}}
 
         {{-- start kode kabkota --}}
-        <div class="px-4 pb-2 mb-2 text-sm bg-white rounded-lg shadow-md dark:bg-gray-800">
+        {{-- <div class="px-4 pb-2 mb-2 text-sm bg-white rounded-lg shadow-md dark:bg-gray-800">
             <p class="pb-1 text-gray-700 dark:text-gray-400">
                 Pilih Peta SLS
             </p>
@@ -362,8 +369,8 @@
                     type="button" aria-haspopup="true" aria-expanded="false"
                     onclick="toggleDropdown('dropdownSearchPetaSls');">
                     Peta SLS
-                    <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                        fill="none" viewBox="0 0 20 20">
+                    <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 20 20">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="m1 1 4 4 4-4" />
                     </svg>
@@ -372,16 +379,6 @@
                     class="absolute right-0 z-50 hidden mt-2 bg-white rounded-lg shadow w-60 dark:bg-gray-700">
                     <ul class="h-48 px-3 pb-3 overflow-y-auto text-xs text-gray-700 dark:text-gray-200"
                         aria-labelledby="dropdownSearchButton">
-                        {{-- <li>
-                                <div
-                                    class="flex items-center p-2 font-bold rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-                                    <input wire:model.live='selectAllKodeTim' id="selectAllKodeTim" type="checkbox"
-                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                    <label for="selectAllKodeTim"
-                                        class="w-full text-xs font-medium text-gray-900 rounded ms-2 dark:text-gray-300">Pilih
-                                        semua</label>
-                                </div>
-                            </li> --}}
 
                         @foreach ($geojsonFilesNames as $geojsonFilesName)
                             <li>
@@ -397,7 +394,7 @@
                     </ul>
                 </div>
             </div>
-        </div>
+        </div> --}}
         {{-- end kode tim --}}
     </div>
     <div class="flex-col flex-1">
@@ -440,7 +437,59 @@
             </div>
 
             {{-- <div wire:ignore id="mapContainer"></div> --}}
-            <div class="px-2 py-1">
+
+
+            <div class="p-2 px-4 pb-4 text-sm bg-white rounded-lg shadow-md dark:bg-gray-800">
+                {{-- tabel --}}
+                <div class="relative mt-2 overflow-x-auto shadow-md sm:rounded-lg">
+                    <table wire:ignore.self
+                        class="w-full text-sm text-left text-gray-500 rtl:text-right dark:text-gray-400">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <tr>
+                                <th class="px-6 py-3 border">ID</th>
+                                <th class="px-6 py-3 border">Kode Kegiatan</th>
+                                <th class="px-6 py-3 border">Kode Kab/Kota</th>
+                                <th class="px-6 py-3 border">Kode Petugas</th>
+                                <th class="px-6 py-3 border">Nama Petugas</th>
+                                <th class="px-6 py-3 border">Timestamp</th>
+                                <th class="px-6 py-3 border">Latitude</th>
+                                <th class="px-6 py-3 border">Longitude</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <th scope="row"
+                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    Apple MacBook Pro 17"
+                                </th>
+                                <td class="px-6 py-4">
+                                    Silver
+                                </td>
+                                <td class="px-6 py-4">
+                                    Laptop
+                                </td>
+                                <td class="px-6 py-4">
+                                    $2999
+                                </td>
+                                <td class="px-6 py-4">
+                                    $2999
+                                </td>
+                                <td class="px-6 py-4">
+                                    $2999
+                                </td>
+                                <td class="px-6 py-4">
+                                    $2999
+                                </td>
+                                <td class="px-6 py-4">
+                                    $2999
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            {{-- <div class="px-2 py-1">
                 <table class="w-full border border-gray-300 table-auto">
                     <thead>
                         <tr>
@@ -474,7 +523,7 @@
                         @endforelse
                     </tbody>
                 </table>
-            </div>
+            </div> --}}
         </div>
     </div>
     {{-- testing aja dalam bentuk tabel --}}
@@ -562,6 +611,30 @@
                             console.error(`Error loading GeoJSON for ${kodeSls}:`, error)
                         );
                 });
+            });
+
+            $wire.on('geojsonLoaded', (geojsonCollection) => {
+                console.log("GeoJSON FeatureCollection Received:", geojsonCollection);
+
+                // Kosongkan semua layer GeoJSON yang ada sebelumnya
+                geojsonLayers.clearLayers();
+
+                // Opsi untuk layer GeoJSON
+                var options = {
+                    maxZoom: 16,
+                    tolerance: 3,
+                    debug: 0,
+                    style: {
+                        color: "#FF0000", // Garis berwarna merah
+                        weight: 3, // Ketebalan garis
+                        fill: true, // Tidak ada warna fill
+                        fillOpacity: 0.2, // Transparansi isian (meskipun tidak diaktifkan)
+                    },
+                };
+
+                // Tambahkan GeoJSON FeatureCollection ke layer group
+                const geojsonLayer = L.geoJson(geojsonCollection, options);
+                geojsonLayers.addLayer(geojsonLayer);
             });
         </script>
     @endscript

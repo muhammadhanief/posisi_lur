@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Facades\Log;
 
-class WilayahTerkecilImport implements ToModel, WithHeadingRow
+class WilayahTerkecilImport implements ToModel, WithHeadingRow, WithValidation
 {
     protected $wilayah_terkecil_type_id;
 
@@ -98,5 +98,21 @@ class WilayahTerkecilImport implements ToModel, WithHeadingRow
             throw $e; // Opsional: Lempar ulang error jika ingin berhenti sepenuhnya
             return $e; // Kembalikan error jika ingin melanjutkan proses
         }
+    }
+
+    public function rules(): array
+    {
+        return [
+            'kode_provinsi' => 'required',
+            'provinsi' => 'required',
+            'kode_kabupatenkota' => 'required',
+            'kabupatenkota' => 'required',
+            'kode_kecamatan' => 'required',
+            'kecamatan' => 'required',
+            'kode_desakelurahan' => 'required',
+            'desakelurahan' => 'required',
+            'kode_wilayahterkecil' => 'required',
+            'nama_wilayahterkecil' => 'required',
+        ];
     }
 }
