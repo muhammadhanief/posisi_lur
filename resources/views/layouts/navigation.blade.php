@@ -81,7 +81,7 @@
                 @endif
 
                 <!-- Settings Dropdown -->
-                {{-- <div class="relative ms-3">
+                <div class="relative ms-3">
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
                             @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
@@ -134,7 +134,7 @@
                             </form>
                         </x-slot>
                     </x-dropdown>
-                </div> --}}
+                </div>
             </div>
         </div>
     </div>

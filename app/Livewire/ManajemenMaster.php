@@ -29,6 +29,7 @@ class ManajemenMaster extends Component
 
     public function import()
     {
+        set_time_limit(300);
         $this->validate([
             'fileImport' => 'required|mimes:xlsx',
             'wilayah_terkecil_type_id' => 'required|not_in:'

@@ -13,6 +13,34 @@
                 Filter Petugas yang Akan Ditampilkan
             </h4>
         </div>
+        <div wire:loading role="status" class="flex items-center justify-center pt-2 text-blue-500">
+            <div class="flex flex-row items-center gap-4 p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
+                role="alert">
+                <div role="status">
+                    <svg aria-hidden="true"
+                        class="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-purple-600"
+                        viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                            fill="currentColor" />
+                        <path
+                            d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                            fill="currentFill" />
+                    </svg>
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <div class="flex flex-col">
+                    <div>
+                        <span class="font-medium">Melakukan input data</span>. Mohon tunggu
+                        beberapa
+                        saat...
+                    </div>
+                    <div>
+                        Maaf yaa lama 🙏🏻, datanya banyak 🫠
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="px-4 pb-2 mb-2 text-sm bg-white rounded-lg shadow-md dark:bg-gray-800">
             <p class="pb-1 text-gray-700 dark:text-gray-400">
                 Pilih Kegiatan
@@ -33,7 +61,7 @@
                     class="absolute right-0 z-50 hidden mt-2 bg-white rounded-lg shadow w-60 dark:bg-gray-700">
                     <ul class="h-48 px-3 pb-3 overflow-y-auto text-xs text-gray-700 dark:text-gray-200"
                         aria-labelledby="dropdownSearchButton">
-                        <li>
+                        {{-- <li>
                             <div
                                 class="flex items-center p-2 font-bold rounded hover:bg-gray-100 dark:hover:bg-gray-600">
                                 <input wire:model.live='selectAllKodeKegiatan' id="selectAllKodeKegiatan"
@@ -43,12 +71,13 @@
                                     class="w-full text-xs font-medium text-gray-900 rounded ms-2 dark:text-gray-300">Pilih
                                     semua</label>
                             </div>
-                        </li>
+                        </li> --}}
+
                         @foreach ($kegiatans as $kegiatan)
                             <li>
                                 <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
                                     <input wire:model.live='selectedKodeKegiatan' id="pelabuhan-{{ $loop->index }}"
-                                        type="checkbox" value={{ $kegiatan->id }}
+                                        type="radio" value={{ $kegiatan->id }}
                                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                     <label for="pelabuhan-{{ $loop->index }}"
                                         class="w-full text-xs font-medium text-gray-900 rounded ms-2 dark:text-gray-300">{{ $kegiatan->name }}</label>
@@ -59,6 +88,7 @@
                 </div>
             </div>
         </div>
+
         {{-- end kode kegiatan --}}
 
         {{-- start kode prov --}}
@@ -446,44 +476,38 @@
                         class="w-full text-sm text-left text-gray-500 rtl:text-right dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
-                                <th class="px-6 py-3 border">ID</th>
-                                <th class="px-6 py-3 border">Kode Kegiatan</th>
-                                <th class="px-6 py-3 border">Kode Kab/Kota</th>
-                                <th class="px-6 py-3 border">Kode Petugas</th>
-                                <th class="px-6 py-3 border">Nama Petugas</th>
-                                <th class="px-6 py-3 border">Timestamp</th>
-                                <th class="px-6 py-3 border">Latitude</th>
-                                <th class="px-6 py-3 border">Longitude</th>
+                                <th class="px-6 py-3 border">Nama</th>
+                                <th class="px-6 py-3 border">Kode Wilayah</th>
+                                <th class="px-6 py-3 border">No Hp</th>
+                                <th class="px-6 py-3 border">Password</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                <th scope="row"
-                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    Apple MacBook Pro 17"
-                                </th>
-                                <td class="px-6 py-4">
-                                    Silver
-                                </td>
-                                <td class="px-6 py-4">
-                                    Laptop
-                                </td>
-                                <td class="px-6 py-4">
-                                    $2999
-                                </td>
-                                <td class="px-6 py-4">
-                                    $2999
-                                </td>
-                                <td class="px-6 py-4">
-                                    $2999
-                                </td>
-                                <td class="px-6 py-4">
-                                    $2999
-                                </td>
-                                <td class="px-6 py-4">
-                                    $2999
-                                </td>
-                            </tr>
+                            @if ($selectedKodeWilayahTerkecilModel != null)
+                                @foreach ($selectedKodeWilayahTerkecilModel as $selectedKodeWilayahTerkecil)
+                                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                        <th scope="row"
+                                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            {{ $selectedKodeWilayahTerkecil->user->name }}
+                                        </th>
+                                        <td class="px-6 py-4">
+                                            {{ $selectedKodeWilayahTerkecil->kd_full }}
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            {{ $selectedKodeWilayahTerkecil->user->hp }}
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            {{ $selectedKodeWilayahTerkecil->user->password_not_hashed }}
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @else
+                                <tr>
+                                    <td class="px-6 py-4">
+                                        Belum Ada data
+                                    </td>
+                                </tr>
+                            @endif
                         </tbody>
                     </table>
                 </div>
@@ -627,8 +651,25 @@
                     style: {
                         color: "#FF0000", // Garis berwarna merah
                         weight: 3, // Ketebalan garis
-                        fill: true, // Tidak ada warna fill
-                        fillOpacity: 0.2, // Transparansi isian (meskipun tidak diaktifkan)
+                        fill: true, // Isian diaktifkan
+                        fillOpacity: 0.2, // Transparansi isian
+                    },
+                    onEachFeature: function(feature, layer) {
+                        // Buat konten tooltip menggunakan properties dari setiap fitur
+                        const tooltipContent = `
+                            ${feature.properties.kdkab} ${feature.properties.nmkab}<br>
+                            ${feature.properties.kdkec} ${feature.properties.nmkec}<br>
+                            ${feature.properties.kdsls} ${feature.properties.nmsls}<br>
+                            ${feature.properties.kddesa} ${feature.properties.nmdesa}<br>
+                            PPL: ${feature.properties.name}<br>
+                            <b>ID SLS:</b> ${feature.properties.idsls}
+                        `;
+                        // Tambahkan tooltip ke layer
+                        layer.bindTooltip(tooltipContent, {
+                            permanent: false, // Tooltip hanya muncul saat dihover
+                            direction: "top", // Arah munculnya tooltip
+                        });
+
                     },
                 };
 

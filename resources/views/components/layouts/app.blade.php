@@ -75,8 +75,8 @@
             geojsonLayers = L.layerGroup().addTo(map2);
 
             // Contoh marker awal (opsional)
-            var hydMarker = new L.Marker([-7.048929, 110.492233]);
-            var hydMarker2 = new L.Marker([-7.051947, 110.499730]);
+            // var hydMarker = new L.Marker([-7.048929, 110.492233]);
+            // var hydMarker2 = new L.Marker([-7.051947, 110.499730]);
 
             // Event Listener: Klik Marker untuk Buka Google Maps
             hydMarker.on('click', function() {

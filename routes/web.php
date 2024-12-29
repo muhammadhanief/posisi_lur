@@ -19,9 +19,8 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+    Route::get('/monitoring', First::class)->name('monitoring');
+    Route::get('/counter', Counter::class);
+    Route::get('/manajemen-petugas', ManajemenPetugas::class)->name('manajemenPetugas');
+    Route::get('/manajemen-master', ManajemenMaster::class)->name('manajemenMaster');
 });
-
-Route::get('/monitoring', First::class)->name('monitoring');
-Route::get('/counter', Counter::class);
-Route::get('/manajemen-petugas', ManajemenPetugas::class)->name('manajemenPetugas');
-Route::get('/manajemen-master', ManajemenMaster::class)->name('manajemenMaster');

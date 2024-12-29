@@ -15,13 +15,17 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class First extends Component
 {
+    use WithPagination;
+
     public $selectedKodeKabkota = [];
     public $selectAllKodeKabkota = false;
 
-    public $selectedKodeKegiatan = [];
+    // public $selectedKodeKegiatan = [];
+    public $selectedKodeKegiatan; // Tidak perlu array
     public $selectAllKodeKegiatan = false;
 
     public $selectedPetugas = [];
@@ -51,25 +55,69 @@ class First extends Component
         $this->coba();
     }
 
+    // public function updatedSelectedKodeKegiatan()
+    // {
+    //     // Ambil semua kode_kegiatan
+    //     $allKodeKegiatan = Kegiatan::pluck('id')->toArray();
+
+    //     // Jika semua kode_kegiatan ada di selectedKodeKegiatan, maka selectAllKodeKegiatan = true, jika tidak maka false
+    //     $this->selectAllKodeKegiatan = count($this->selectedKodeKegiatan) === count($allKodeKegiatan);
+
+    //     // Untuk update model wilayahterkecil terpilih
+    //     $this->selectedKodeWilayahTerkecilModel = UsersKegiatan::whereIn('kegiatan_id', $this->selectedKodeKegiatan)
+    //         ->whereIn(DB::raw('SUBSTRING(kd_full, 3, 2)'), $this->selectedKodeKabkota)
+    //         ->get();
+
+    //     // Ambil nilai kd_full dan isi ke properti selectedKodeWilayahTerkecil
+    //     $this->selectedKodeWilayahTerkecil = $this->selectedKodeWilayahTerkecilModel->pluck('kd_full')->toArray();
+
+    //     // memanggil ke peta
+    //     $this->coba();
+    // }
+
     public function updatedSelectedKodeKegiatan()
     {
         // Ambil semua kode_kegiatan
         $allKodeKegiatan = Kegiatan::pluck('id')->toArray();
 
-        // Jika semua kode_kegiatan ada di selectedKodeKegiatan, maka selectAllKodeKegiatan = true, jika tidak maka false
-        $this->selectAllKodeKegiatan = count($this->selectedKodeKegiatan) === count($allKodeKegiatan);
+        // Jika selectedKodeKegiatan adalah string (karena radio button), ubah menjadi array
+        $selectedKodeKegiatanArray = is_array($this->selectedKodeKegiatan) ? $this->selectedKodeKegiatan : [$this->selectedKodeKegiatan];
 
-        // Untuk update model wilayahterkecil terpilih
-        $this->selectedKodeWilayahTerkecilModel = UsersKegiatan::whereIn('kegiatan_id', $this->selectedKodeKegiatan)
+        // Periksa apakah semua kode_kegiatan ada di selectedKodeKegiatan
+        $this->selectAllKodeKegiatan = count($selectedKodeKegiatanArray) === count($allKodeKegiatan);
+
+        // Update model wilayahterkecil terpilih
+        $this->selectedKodeWilayahTerkecilModel = UsersKegiatan::whereIn('kegiatan_id', $selectedKodeKegiatanArray)
             ->whereIn(DB::raw('SUBSTRING(kd_full, 3, 2)'), $this->selectedKodeKabkota)
             ->get();
 
         // Ambil nilai kd_full dan isi ke properti selectedKodeWilayahTerkecil
         $this->selectedKodeWilayahTerkecil = $this->selectedKodeWilayahTerkecilModel->pluck('kd_full')->toArray();
 
-        // memanggil ke peta
+        // Memanggil ke peta
         $this->coba();
     }
+
+
+    // public function updatedSelectAllKodeKabkota()
+    // {
+    //     if ($this->selectAllKodeKabkota) {
+    //         $this->selectedKodeKabkota = Kabkot::pluck('kd_kabkot')->toArray();
+    //     } else {
+    //         $this->selectedKodeKabkota = [];
+    //     }
+
+    //     // Untuk update model wilayahterkecil terpilih
+    //     $this->selectedKodeWilayahTerkecilModel = UsersKegiatan::whereIn('kegiatan_id', $this->selectedKodeKegiatan)
+    //         ->whereIn(DB::raw('SUBSTRING(kd_full, 3, 2)'), $this->selectedKodeKabkota)
+    //         ->get();
+
+    //     // Ambil nilai kd_full dan isi ke properti selectedKodeWilayahTerkecil
+    //     $this->selectedKodeWilayahTerkecil = $this->selectedKodeWilayahTerkecilModel->pluck('kd_full')->toArray();
+
+    //     // memanggil ke peta
+    //     $this->coba();
+    // }
 
     public function updatedSelectAllKodeKabkota()
     {
@@ -79,35 +127,65 @@ class First extends Component
             $this->selectedKodeKabkota = [];
         }
 
+        // Pastikan selectedKodeKegiatan berupa array
+        $selectedKodeKegiatanArray = is_array($this->selectedKodeKegiatan) ? $this->selectedKodeKegiatan : [$this->selectedKodeKegiatan];
+
         // Untuk update model wilayahterkecil terpilih
-        $this->selectedKodeWilayahTerkecilModel = UsersKegiatan::whereIn('kegiatan_id', $this->selectedKodeKegiatan)
+        $this->selectedKodeWilayahTerkecilModel = UsersKegiatan::whereIn('kegiatan_id', $selectedKodeKegiatanArray)
             ->whereIn(DB::raw('SUBSTRING(kd_full, 3, 2)'), $this->selectedKodeKabkota)
             ->get();
 
         // Ambil nilai kd_full dan isi ke properti selectedKodeWilayahTerkecil
         $this->selectedKodeWilayahTerkecil = $this->selectedKodeWilayahTerkecilModel->pluck('kd_full')->toArray();
 
-        // memanggil ke peta
+        // Memanggil ke peta
         $this->coba();
     }
 
+
+    // public function updatedSelectedKodeKabkota()
+    // {
+    //     // Ambil semua kode_kabkota
+    //     $allKodeKabkota = Kabkot::pluck('kd_kabkot')->toArray();
+
+    //     // Jika semua kode_kabkota ada di selectedKodeKabkota, maka selectAllKodeKabkota = true, jika tidak maka false
+    //     $this->selectAllKodeKabkota = count($this->selectedKodeKabkota) === count($allKodeKabkota);
+
+    //     // Untuk update model wilayahterkecil terpilih
+    //     $this->selectedKodeWilayahTerkecilModel = UsersKegiatan::whereIn('kegiatan_id', $this->selectedKodeKegiatan)
+    //         ->whereIn(DB::raw('SUBSTRING(kd_full, 3, 2)'), $this->selectedKodeKabkota)
+    //         ->get();
+
+    //     // Ambil nilai kd_full dan isi ke properti selectedKodeWilayahTerkecil
+    //     $this->selectedKodeWilayahTerkecil = $this->selectedKodeWilayahTerkecilModel->pluck('kd_full')->toArray();
+
+    //     // memanggil ke peta
+    //     $this->coba();
+    // }
+
     public function updatedSelectedKodeKabkota()
     {
+        // Pastikan selectedKodeKabkota adalah array
+        $this->selectedKodeKabkota = is_array($this->selectedKodeKabkota) ? $this->selectedKodeKabkota : [$this->selectedKodeKabkota];
+
         // Ambil semua kode_kabkota
         $allKodeKabkota = Kabkot::pluck('kd_kabkot')->toArray();
 
         // Jika semua kode_kabkota ada di selectedKodeKabkota, maka selectAllKodeKabkota = true, jika tidak maka false
         $this->selectAllKodeKabkota = count($this->selectedKodeKabkota) === count($allKodeKabkota);
 
+        // Pastikan selectedKodeKegiatan adalah array
+        $selectedKodeKegiatanArray = is_array($this->selectedKodeKegiatan) ? $this->selectedKodeKegiatan : [$this->selectedKodeKegiatan];
+
         // Untuk update model wilayahterkecil terpilih
-        $this->selectedKodeWilayahTerkecilModel = UsersKegiatan::whereIn('kegiatan_id', $this->selectedKodeKegiatan)
+        $this->selectedKodeWilayahTerkecilModel = UsersKegiatan::whereIn('kegiatan_id', $selectedKodeKegiatanArray)
             ->whereIn(DB::raw('SUBSTRING(kd_full, 3, 2)'), $this->selectedKodeKabkota)
             ->get();
 
         // Ambil nilai kd_full dan isi ke properti selectedKodeWilayahTerkecil
         $this->selectedKodeWilayahTerkecil = $this->selectedKodeWilayahTerkecilModel->pluck('kd_full')->toArray();
 
-        // memanggil ke peta
+        // Memanggil ke peta
         $this->coba();
     }
 
@@ -189,21 +267,50 @@ class First extends Component
             return;
         }
 
+        // yang murni biasa
         // Query untuk mengambil data berdasarkan ID SLS
+        // $geojson = DB::select(
+        //     "
+        //     SELECT jsonb_build_object(
+        //         'type', 'Feature',
+        //         'geometry', ST_AsGeoJSON(wkb_geometry)::jsonb,
+        //         'properties', to_jsonb(peta) - 'wkb_geometry'
+        //     ) AS geojson
+        //     FROM peta
+        //     WHERE idsls IN (" . implode(',', array_fill(0, count($wilayah_terkecils), '?')) . ")",
+        //     $wilayah_terkecils
+        // );
+
+        // yang nampilin user_id kegiatan
+        // $geojson = DB::select(
+        //     "
+        //     SELECT jsonb_build_object(
+        //         'type', 'Feature',
+        //         'geometry', ST_AsGeoJSON(wkb_geometry)::jsonb,
+        //         'properties', to_jsonb(peta) - 'wkb_geometry' || jsonb_build_object('user_id', users_kegiatans.user_id)
+        //     ) AS geojson
+        //     FROM peta
+        //     LEFT JOIN users_kegiatans ON users_kegiatans.kd_full = peta.idsls
+        //     WHERE idsls IN (" . implode(',', array_fill(0, count($wilayah_terkecils), '?')) . ")",
+        //     $wilayah_terkecils
+        // );
+
+        // yang udahs ama petugas
         $geojson = DB::select(
             "
-        SELECT jsonb_build_object(
-            'type', 'Feature',
-            'geometry', ST_AsGeoJSON(wkb_geometry)::jsonb,
-            'properties', jsonb_build_object(
-                'ogc_fid', ogc_fid,
-                'idsls', idsls
-            )
-        ) AS geojson
-        FROM peta
-        WHERE idsls IN (" . implode(',', array_fill(0, count($wilayah_terkecils), '?')) . ")",
+            SELECT jsonb_build_object(
+                'type', 'Feature',
+                'geometry', ST_AsGeoJSON(wkb_geometry)::jsonb,
+                'properties', to_jsonb(peta) - 'wkb_geometry' || jsonb_build_object('name', users.name)
+            ) AS geojson
+            FROM peta
+            LEFT JOIN users_kegiatans ON users_kegiatans.kd_full = peta.idsls
+            LEFT JOIN users ON users.id = users_kegiatans.user_id
+            WHERE idsls IN (" . implode(',', array_fill(0, count($wilayah_terkecils), '?')) . ")",
             $wilayah_terkecils
         );
+
+
 
         // Ubah hasil query menjadi array GeoJSON
         $features = array_map(fn($row) => json_decode($row->geojson, true), $geojson);
@@ -213,6 +320,7 @@ class First extends Component
             'type' => 'FeatureCollection',
             'features' => $features,
         ];
+        // dd($featureCollection);
 
         $this->dispatch('geojsonLoaded', $featureCollection);
     }
@@ -273,6 +381,11 @@ class First extends Component
 
     public function mount()
     {
+
+        // Ambil data tanpa paginate
+        $this->selectedKodeWilayahTerkecilModel = collect(); // Mengatur ke collection kosong
+
+
         $this->selectedKodeKabkota = PetugasLocation::select('kode_kabkota')->distinct()->pluck('kode_kabkota')->toArray();
         // $this->selectedKodeTim = PetugasLocation::selectRaw('LEFT(kode_petugas, 1) as digit')
         //     ->distinct()
@@ -285,12 +398,12 @@ class First extends Component
 
     public function render()
     {
-        // dd($this->all());
+
+
         return view('livewire.first', [
             'kegiatans' => Kegiatan::all(),
             'kode_kabkotas' => Kabkot::all(),
             'kode_kecamatans' => Kecamatan::all(),
-            // 'kode_kabkotas' => PetugasLocation::select('kode_kabkota')->distinct()->pluck('kode_kabkota'),
             'kode_tims' => PetugasLocation::selectRaw('LEFT(kode_petugas, 1) as digit')
                 ->distinct()
                 ->pluck('digit'),
@@ -299,6 +412,8 @@ class First extends Component
 
         ]);
     }
+
+
 
     public function dd()
     {

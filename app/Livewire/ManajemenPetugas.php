@@ -137,7 +137,7 @@ class ManajemenPetugas extends Component
             'kegiatans' => Kegiatan::all(),
             'wilayah_terkecil_types' => WilayahTerkecilType::all(),
             'users_kegiatans' => UsersKegiatan::paginate(10),
-            'pmls' => User::where('role', 'pml')->get(),
+            'pmls' => User::where('role', 'pml')->paginate(10),
         ]);
     }
 }
