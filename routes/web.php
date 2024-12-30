@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Livewire\First;
 use App\Livewire\ManajemenAkun;
 use App\Livewire\ManajemenMaster;
+use App\Livewire\ManajemenPegawai;
 use App\Livewire\ManajemenPetugas;
 
 Route::get('/', function () {
@@ -23,4 +24,5 @@ Route::middleware([
     Route::get('/counter', Counter::class);
     Route::get('/manajemen-petugas', ManajemenPetugas::class)->name('manajemenPetugas');
     Route::get('/manajemen-master', ManajemenMaster::class)->name('manajemenMaster');
+    Route::get('/manajemen-pegawai', ManajemenPegawai::class)->name('manajemenPegawai');
 });

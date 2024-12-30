@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class UsersKegiatan extends Model
 {
@@ -24,5 +25,11 @@ class UsersKegiatan extends Model
     public function pml()
     {
         return $this->belongsTo(User::class, 'hp_pml', 'hp');
+    }
+
+    // Relasi ke tabel activities
+    public function activities(): HasMany
+    {
+        return $this->hasMany(Activity::class, 'users_kegiatan_id');
     }
 }

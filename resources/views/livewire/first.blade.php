@@ -2,8 +2,8 @@
 <div class="flex flex-col gap-2 mx-auto md:flex-row">
     <!-- Bagian 2/5 -->
     <div id="kiri" class="flex-col bg-white border border-gray-200 rounded-lg dark:bg-gray-900">
-        <button wire:click='coba'>Munculkan peta sls</button>
-        <button wire:click='dd'>DDDD</button>
+        {{-- <button wire:click='coba'>Munculkan peta sls</button> --}}
+        {{-- <button wire:click='dd'>DDDD</button> --}}
 
         {{-- <button wire:click='ddasli'>Munculkan debug</button> --}}
         {{-- start kode kegiatan --}}
@@ -31,7 +31,7 @@
                 </div>
                 <div class="flex flex-col">
                     <div>
-                        <span class="font-medium">Melakukan input data</span>. Mohon tunggu
+                        <span class="font-medium">Proses data</span>. Mohon tunggu
                         beberapa
                         saat...
                     </div>

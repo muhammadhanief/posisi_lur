@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('users_kegiatan_id')->constrained('users_kegiatans')->onDelete('cascade');
             $table->decimal('lat', 10, 8);
-            $table->decimal('long', 11, 8);
+            $table->decimal('lng', 11, 8);
             $table->boolean('is_in_area')->default(false);
             $table->timestamps();
         });
