@@ -17,7 +17,8 @@ return new class extends Migration
             $table->decimal('lat', 10, 8);
             $table->decimal('lng', 11, 8);
             $table->boolean('is_in_area')->default(false);
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
     }
 

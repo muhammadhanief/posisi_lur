@@ -1,67 +1,71 @@
 <x-slot:title>Monitoring Petugas</x-slot:title>
-<div class="flex flex-col gap-2 mx-auto md:flex-row">
+<div class="flex flex-col gap-2 mx-auto md:flex-col">
     <!-- Bagian 2/5 -->
-    <div id="kiri" class="flex-col bg-white border border-gray-200 rounded-lg dark:bg-gray-900">
-        {{-- <button wire:click='coba'>Munculkan peta sls</button> --}}
-        {{-- <button wire:click='dd'>DDDD</button> --}}
 
-        {{-- <button wire:click='ddasli'>Munculkan debug</button> --}}
-        {{-- start kode kegiatan --}}
-        {{-- <p wire:click='getPolygonsForAllUsers'>getPolygonsForAllUsers</p> --}}
-        <div class="px-4 py-2 mb-2 text-sm bg-white rounded-t-lg shadow-md dark:bg-gray-800">
-            <h4 class="px-2 py-1 text-lg font-semibold text-gray-600 dark:text-gray-300">
-                Filter Petugas yang Akan Ditampilkan
-            </h4>
-        </div>
-        <div wire:loading role="status" class="flex items-center justify-center pt-2 text-blue-500">
-            <div class="flex flex-row items-center gap-4 p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
-                role="alert">
-                <div role="status">
-                    <svg aria-hidden="true"
-                        class="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-purple-600"
-                        viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
-                            fill="currentColor" />
-                        <path
-                            d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
-                            fill="currentFill" />
-                    </svg>
-                    <span class="sr-only">Loading...</span>
+    <div class="flex flex-col gap-2 md:flex-row">
+        <div class="flex flex-col">
+            <div id="kiri" class="flex-col bg-white border border-gray-200 rounded-lg dark:bg-gray-900">
+
+                {{-- <button wire:click='coba'>Munculkan peta sls</button> --}}
+                {{-- <button wire:click='dd'>DDDD</button> --}}
+
+                {{-- <button wire:click='ddasli'>Munculkan debug</button> --}}
+                {{-- start kode kegiatan --}}
+                {{-- <p wire:click='getPolygonsForAllUsers'>getPolygonsForAllUsers</p> --}}
+                <div class="px-4 py-2 mb-2 text-sm bg-white rounded-t-lg shadow-md dark:bg-gray-800">
+                    <h4 class="px-2 py-1 text-lg font-semibold text-gray-600 dark:text-gray-300">
+                        Filter Petugas yang Akan Ditampilkan
+                    </h4>
                 </div>
-                <div class="flex flex-col">
-                    <div>
-                        <span class="font-medium">Proses data</span>. Mohon tunggu
-                        beberapa
-                        saat...
-                    </div>
-                    <div>
-                        Maaf yaa lama 🙏🏻, datanya banyak 🫠
+                <div wire:loading role="status" class="flex items-center justify-center pt-2 text-blue-500">
+                    <div class="flex flex-row items-center gap-4 p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
+                        role="alert">
+                        <div role="status">
+                            <svg aria-hidden="true"
+                                class="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-purple-600"
+                                viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                                    fill="currentColor" />
+                                <path
+                                    d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                                    fill="currentFill" />
+                            </svg>
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <div>
+                                <span class="font-medium">Proses data</span>. Mohon tunggu
+                                beberapa
+                                saat...
+                            </div>
+                            <div>
+                                Maaf yaa lama 🙏🏻, datanya banyak 🫠
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="px-4 pb-2 mb-2 text-sm bg-white rounded-lg shadow-md dark:bg-gray-800">
-            <p class="pb-1 text-gray-700 dark:text-gray-400">
-                Pilih Kegiatan
-            </p>
-            <div class="relative dropdown-KodeKegiatan">
-                <button id="dropdownSearchButton" data-dropdown-toggle="dropdownSearchKodeKegiatan"
-                    class="inline-flex items-center px-4 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                    type="button" aria-haspopup="true" aria-expanded="false"
-                    onclick="toggleDropdown('dropdownSearchKodeKegiatan');">
-                    Kegiatan
-                    <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 20 20">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="m1 1 4 4 4-4" />
-                    </svg>
-                </button>
-                <div wire:ignore id="dropdownSearchKodeKegiatan"
-                    class="absolute right-0 z-50 hidden mt-2 bg-white rounded-lg shadow w-60 dark:bg-gray-700">
-                    <ul class="h-48 px-3 pb-3 overflow-y-auto text-xs text-gray-700 dark:text-gray-200"
-                        aria-labelledby="dropdownSearchButton">
-                        {{-- <li>
+                <div class="px-4 pb-2 mb-2 text-sm bg-white rounded-lg shadow-md dark:bg-gray-800">
+                    <p class="pb-1 text-gray-700 dark:text-gray-400">
+                        Pilih Kegiatan
+                    </p>
+                    <div class="relative dropdown-KodeKegiatan">
+                        <button id="dropdownSearchButton" data-dropdown-toggle="dropdownSearchKodeKegiatan"
+                            class="inline-flex items-center px-4 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                            type="button" aria-haspopup="true" aria-expanded="false"
+                            onclick="toggleDropdown('dropdownSearchKodeKegiatan');">
+                            Kegiatan
+                            <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                fill="none" viewBox="0 0 20 20">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 1 4 4 4-4" />
+                            </svg>
+                        </button>
+                        <div wire:ignore id="dropdownSearchKodeKegiatan"
+                            class="absolute right-0 z-50 hidden mt-2 bg-white rounded-lg shadow w-60 dark:bg-gray-700">
+                            <ul class="h-48 px-3 pb-3 overflow-y-auto text-xs text-gray-700 dark:text-gray-200"
+                                aria-labelledby="dropdownSearchButton">
+                                {{-- <li>
                             <div
                                 class="flex items-center p-2 font-bold rounded hover:bg-gray-100 dark:hover:bg-gray-600">
                                 <input wire:model.live='selectAllKodeKegiatan' id="selectAllKodeKegiatan"
@@ -73,26 +77,28 @@
                             </div>
                         </li> --}}
 
-                        @foreach ($kegiatans as $kegiatan)
-                            <li>
-                                <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-                                    <input wire:model.live='selectedKodeKegiatan' id="pelabuhan-{{ $loop->index }}"
-                                        type="radio" value={{ $kegiatan->id }}
-                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                    <label for="pelabuhan-{{ $loop->index }}"
-                                        class="w-full text-xs font-medium text-gray-900 rounded ms-2 dark:text-gray-300">{{ $kegiatan->name }}</label>
-                                </div>
-                            </li>
-                        @endforeach
-                    </ul>
+                                @foreach ($kegiatans as $kegiatan)
+                                    <li>
+                                        <div
+                                            class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
+                                            <input wire:model.live='selectedKodeKegiatan'
+                                                id="pelabuhan-{{ $loop->index }}" type="radio"
+                                                value={{ $kegiatan->id }}
+                                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                            <label for="pelabuhan-{{ $loop->index }}"
+                                                class="w-full text-xs font-medium text-gray-900 rounded ms-2 dark:text-gray-300">{{ $kegiatan->name }}</label>
+                                        </div>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
 
-        {{-- end kode kegiatan --}}
+                {{-- end kode kegiatan --}}
 
-        {{-- start kode prov --}}
-        {{-- <div class="px-4 pb-2 mb-2 text-sm bg-white rounded-lg shadow-md dark:bg-gray-800">
+                {{-- start kode prov --}}
+                {{-- <div class="px-4 pb-2 mb-2 text-sm bg-white rounded-lg shadow-md dark:bg-gray-800">
             <p class="pb-1 text-gray-700 dark:text-gray-400">
                 Pilih Provinsi
             </p>
@@ -138,60 +144,63 @@
                 </div>
             </div>
         </div> --}}
-        {{-- end prov --}}
+                {{-- end prov --}}
 
-        {{-- start kode kabkota --}}
-        <div class="px-4 pb-2 mb-2 text-sm bg-white rounded-lg shadow-md dark:bg-gray-800">
-            <p class="pb-1 text-gray-700 dark:text-gray-400">
-                Pilih Kabupaten/Kota
-            </p>
+                {{-- start kode kabkota --}}
+                <div class="px-4 pb-2 mb-2 text-sm bg-white rounded-lg shadow-md dark:bg-gray-800">
+                    <p class="pb-1 text-gray-700 dark:text-gray-400">
+                        Pilih Kabupaten/Kota
+                    </p>
 
-            <div class="relative dropdown-pelabuhan">
-                <button id="dropdownSearchButton" data-dropdown-toggle="dropdownSearchPelabuhan"
-                    class="inline-flex items-center px-4 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                    type="button" aria-haspopup="true" aria-expanded="false"
-                    onclick="toggleDropdown('dropdownSearchPelabuhan');">
-                    Kode Kabupaten/Kota
-                    <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 20 20">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="m1 1 4 4 4-4" />
-                    </svg>
-                </button>
-                <div wire:ignore id="dropdownSearchPelabuhan"
-                    class="absolute right-0 z-50 hidden mt-2 bg-white rounded-lg shadow w-60 dark:bg-gray-700">
-                    <ul class="h-48 px-3 pb-3 overflow-y-auto text-xs text-gray-700 dark:text-gray-200"
-                        aria-labelledby="dropdownSearchButton">
-                        <li>
-                            <div
-                                class="flex items-center p-2 font-bold rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-                                <input wire:model.live='selectAllKodeKabkota' id="selectAllPelabuhan" type="checkbox"
-                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                <label for="selectAllPelabuhan"
-                                    class="w-full text-xs font-medium text-gray-900 rounded ms-2 dark:text-gray-300">Pilih
-                                    semua</label>
-                            </div>
-                        </li>
-                        @foreach ($kode_kabkotas as $kode_kabkota)
-                            <li>
-                                <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-                                    <input wire:model.live='selectedKodeKabkota' id="pelabuhan-{{ $loop->index }}"
-                                        type="checkbox" value="{{ $kode_kabkota->kd_kabkot }}"
-                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                    <label for="pelabuhan-{{ $loop->index }}"
-                                        class="w-full text-xs font-medium text-gray-900 rounded ms-2 dark:text-gray-300">{{ $kode_kabkota->kd_kabkot }}
-                                        {{ $kode_kabkota->nm_kabkot }}</label>
-                                </div>
-                            </li>
-                        @endforeach
-                    </ul>
+                    <div class="relative dropdown-pelabuhan">
+                        <button id="dropdownSearchButton" data-dropdown-toggle="dropdownSearchPelabuhan"
+                            class="inline-flex items-center px-4 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                            type="button" aria-haspopup="true" aria-expanded="false"
+                            onclick="toggleDropdown('dropdownSearchPelabuhan');">
+                            Kode Kabupaten/Kota
+                            <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                fill="none" viewBox="0 0 20 20">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 1 4 4 4-4" />
+                            </svg>
+                        </button>
+                        <div wire:ignore id="dropdownSearchPelabuhan"
+                            class="absolute right-0 z-50 hidden mt-2 bg-white rounded-lg shadow w-60 dark:bg-gray-700">
+                            <ul class="h-48 px-3 pb-3 overflow-y-auto text-xs text-gray-700 dark:text-gray-200"
+                                aria-labelledby="dropdownSearchButton">
+                                <li>
+                                    <div
+                                        class="flex items-center p-2 font-bold rounded hover:bg-gray-100 dark:hover:bg-gray-600">
+                                        <input wire:model.live='selectAllKodeKabkota' id="selectAllPelabuhan"
+                                            type="checkbox"
+                                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                        <label for="selectAllPelabuhan"
+                                            class="w-full text-xs font-medium text-gray-900 rounded ms-2 dark:text-gray-300">Pilih
+                                            semua</label>
+                                    </div>
+                                </li>
+                                @foreach ($kode_kabkotas as $kode_kabkota)
+                                    <li>
+                                        <div
+                                            class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
+                                            <input wire:model.live='selectedKodeKabkota'
+                                                id="pelabuhan-{{ $loop->index }}" type="checkbox"
+                                                value="{{ $kode_kabkota->kd_kabkot }}"
+                                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                            <label for="pelabuhan-{{ $loop->index }}"
+                                                class="w-full text-xs font-medium text-gray-900 rounded ms-2 dark:text-gray-300">{{ $kode_kabkota->kd_kabkot }}
+                                                {{ $kode_kabkota->nm_kabkot }}</label>
+                                        </div>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        {{-- end kabkot --}}
+                {{-- end kabkot --}}
 
-        {{-- start kode kecamatan --}}
-        {{-- <div class="px-4 pb-2 mb-2 text-sm bg-white rounded-lg shadow-md dark:bg-gray-800">
+                {{-- start kode kecamatan --}}
+                {{-- <div class="px-4 pb-2 mb-2 text-sm bg-white rounded-lg shadow-md dark:bg-gray-800">
             <p class="pb-1 text-gray-700 dark:text-gray-400">
                 Pilih Kecamatan
             </p>
@@ -239,10 +248,10 @@
                 </div>
             </div>
         </div> --}}
-        {{-- end kecamatan --}}
+                {{-- end kecamatan --}}
 
-        {{-- start kode desa --}}
-        {{-- <div class="px-4 pb-2 mb-2 text-sm bg-white rounded-lg shadow-md dark:bg-gray-800">
+                {{-- start kode desa --}}
+                {{-- <div class="px-4 pb-2 mb-2 text-sm bg-white rounded-lg shadow-md dark:bg-gray-800">
             <p class="pb-1 text-gray-700 dark:text-gray-400">
                 Pilih Desa
             </p>
@@ -288,10 +297,10 @@
                 </div>
             </div>
         </div> --}}
-        {{-- end desa --}}
+                {{-- end desa --}}
 
-        {{-- start wilayah terkecil --}}
-        {{-- <div class="px-4 pb-2 mb-2 text-sm bg-white rounded-lg shadow-md dark:bg-gray-800">
+                {{-- start wilayah terkecil --}}
+                {{-- <div class="px-4 pb-2 mb-2 text-sm bg-white rounded-lg shadow-md dark:bg-gray-800">
             <p class="pb-1 text-gray-700 dark:text-gray-400">
                 Pilih Wilayah Terkecil
             </p>
@@ -337,10 +346,10 @@
                 </div>
             </div>
         </div> --}}
-        {{-- end desa --}}
+                {{-- end desa --}}
 
-        {{-- start kode tim --}}
-        {{-- <div class="px-4 pb-2 mb-2 text-sm bg-white rounded-lg shadow-md dark:bg-gray-800">
+                {{-- start kode tim --}}
+                {{-- <div class="px-4 pb-2 mb-2 text-sm bg-white rounded-lg shadow-md dark:bg-gray-800">
             <p class="pb-1 text-gray-700 dark:text-gray-400">
                 Pilih Tim Lapangan
             </p>
@@ -386,10 +395,10 @@
                 </div>
             </div>
         </div> --}}
-        {{-- end kode tim --}}
+                {{-- end kode tim --}}
 
-        {{-- start kode kabkota --}}
-        {{-- <div class="px-4 pb-2 mb-2 text-sm bg-white rounded-lg shadow-md dark:bg-gray-800">
+                {{-- start kode kabkota --}}
+                {{-- <div class="px-4 pb-2 mb-2 text-sm bg-white rounded-lg shadow-md dark:bg-gray-800">
             <p class="pb-1 text-gray-700 dark:text-gray-400">
                 Pilih Peta SLS
             </p>
@@ -425,52 +434,56 @@
                 </div>
             </div>
         </div> --}}
-        {{-- end kode tim --}}
-    </div>
-    <div class="flex-col flex-1">
-        <div class="flex-col mb-2 bg-white border border-gray-200 rounded-lg dark:bg-gray-900">
-            <div class="px-4 py-2 mb-2 text-sm bg-white rounded-t-lg shadow-md dark:bg-gray-800">
-                <h4 class="px-2 py-1 text-lg font-semibold text-gray-600 dark:text-gray-300">
-                    Cari Salah Satu Petugas
-                </h4>
+                {{-- end kode tim --}}
             </div>
-            <div id="kolom-pencarian" class="flex flex-col px-4 py-2 mb-2">
-                <div class="relative w-full max-w-xl focus-within:text-purple-500 ">
-                    <div class="absolute inset-y-0 flex items-center pl-2">
-                        <svg class="w-4 h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd"
-                                d=" M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                                clip-rule="evenodd">
-                            </path>
-                        </svg>
-                    </div>
-                    <input
-                        class="w-full pl-8 pr-2 text-sm text-gray-700 placeholder-gray-600 bg-gray-100 border-0 rounded-md dark:placeholder-gray-500 dark:focus:shadow-outline-gray dark:focus:placeholder-gray-600 dark:bg-gray-700 dark:text-gray-200 focus:placeholder-gray-500 focus:bg-white focus:border-purple-300 focus:outline-none focus:shadow-outline-purple form-input"
-                        wire:model.live.debounce.500ms="search" type="text" placeholder="Ketik nama petugas.." />
+            <div class="flex-col mt-2 mb-2 bg-white border border-gray-200 rounded-lg dark:bg-gray-900">
+                <div class="px-4 py-2 mb-2 text-sm bg-white rounded-t-lg shadow-md dark:bg-gray-800">
+                    <h4 class="px-2 py-1 text-lg font-semibold text-gray-600 dark:text-gray-300">
+                        Cari Salah Satu Petugas
+                    </h4>
                 </div>
-                <span class="text-xs text-red-700 dark:text-red-400">Kosongkan ini jika menggunakan fitur
-                    filter!</span>
+                <div id="kolom-pencarian" class="flex flex-col px-4 py-2 mb-2">
+                    <div class="relative w-full max-w-xl focus-within:text-purple-500 ">
+                        <div class="absolute inset-y-0 flex items-center pl-2">
+                            <svg class="w-4 h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d=" M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                                    clip-rule="evenodd">
+                                </path>
+                            </svg>
+                        </div>
+                        <input
+                            class="w-full pl-8 pr-2 text-sm text-gray-700 placeholder-gray-600 bg-gray-100 border-0 rounded-md dark:placeholder-gray-500 dark:focus:shadow-outline-gray dark:focus:placeholder-gray-600 dark:bg-gray-700 dark:text-gray-200 focus:placeholder-gray-500 focus:bg-white focus:border-purple-300 focus:outline-none focus:shadow-outline-purple form-input"
+                            wire:model.live.debounce.500ms="search" type="text"
+                            placeholder="Ketik nama petugas.." />
+                    </div>
+                    <span class="text-xs text-red-700 dark:text-red-400">Kosongkan ini jika menggunakan fitur
+                        filter!</span>
+                </div>
             </div>
         </div>
 
-        <div id="kanan" class="flex-col bg-white border border-gray-200 rounded-lg dark:bg-gray-900">
-            <div class="px-4 py-2 mb-2 text-sm bg-white rounded-t-lg shadow-md dark:bg-gray-800">
-                <h4 class="px-2 py-1 text-lg font-semibold text-gray-600 dark:text-gray-300">
-                    Peta Posisi Petugas
-                </h4>
-            </div>
-            {{-- <div wire:ignore>
+        <div class="flex-col flex-1">
+
+
+            <div id="kanan" class="flex-col bg-white border border-gray-200 rounded-lg dark:bg-gray-900">
+                <div class="px-4 py-2 mb-2 text-sm bg-white rounded-t-lg shadow-md dark:bg-gray-800">
+                    <h4 class="px-2 py-1 text-lg font-semibold text-gray-600 dark:text-gray-300">
+                        Peta Posisi Petugas
+                    </h4>
+                </div>
+                {{-- <div wire:ignore>
                 <div id="map-canvas" style="width: 100%; height: 500px"></div>
             </div> --}}
-            <div wire:ignore class="px-2 py-1">
-                <div id="map" style="width: 100%; height: 380px"></div>
-            </div>
+                <div wire:ignore class="px-2 py-1">
+                    <div id="map" style="width: 100%; height: 380px"></div>
+                </div>
 
-            {{-- <div wire:ignore id="mapContainer"></div> --}}
+                {{-- <div wire:ignore id="mapContainer"></div> --}}
 
 
-            <div class="p-2 px-4 pb-4 text-sm bg-white rounded-lg shadow-md dark:bg-gray-800">
-                {{-- tabel --}}
+                {{-- <div class="p-2 px-4 pb-4 text-sm bg-white rounded-lg shadow-md dark:bg-gray-800">
+                
                 <div class="relative mt-2 overflow-x-auto shadow-md sm:rounded-lg">
                     <table wire:ignore.self
                         class="w-full text-sm text-left text-gray-500 rtl:text-right dark:text-gray-400">
@@ -511,9 +524,9 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
+            </div> --}}
 
-            {{-- <div class="px-2 py-1">
+                {{-- <div class="px-2 py-1">
                 <table class="w-full border border-gray-300 table-auto">
                     <thead>
                         <tr>
@@ -548,45 +561,104 @@
                     </tbody>
                 </table>
             </div> --}}
+            </div>
         </div>
+        {{-- testing aja dalam bentuk tabel --}}
     </div>
-    {{-- testing aja dalam bentuk tabel --}}
-
 
     {{-- end testing --}}
-
+    <div class="p-2 px-4 pb-4 text-sm bg-white rounded-lg shadow-md dark:bg-gray-800">
+        <h4 class="px-2 py-1 text-lg font-semibold text-gray-600 dark:text-gray-300">
+            Log Aktivitias Petugas
+        </h4>
+        <div class="relative mt-2 overflow-x-auto shadow-md sm:rounded-lg">
+            <table wire:ignore.self class="w-full text-sm text-left text-gray-500 rtl:text-right dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th class="px-6 py-3 border">Nama</th>
+                        <th class="px-6 py-3 border">Lat</th>
+                        <th class="px-6 py-3 border">Lng</th>
+                        <th class="px-6 py-3 border">Waktu</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if ($activities != null)
+                        @foreach ($activities as $activity)
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <th scope="row"
+                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {{ $activity->usersKegiatan->user->name }}
+                                </th>
+                                <td class="px-6 py-4">
+                                    {{ $activity->lat }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $activity->lng }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $activity->created_at->format('d-m-Y H:i:s') }}
+                                </td>
+                            </tr>
+                        @endforeach
+                    @else
+                        <tr>
+                            <td class="px-6 py-4">
+                                Belum Ada data
+                            </td>
+                        </tr>
+                    @endif
+                </tbody>
+            </table>
+            <div class="p-2 ">
+                {{ $activities->links() }}
+            </div>
+        </div>
+    </div>
 
 
     @script
         <script>
-            $wire.on('updateMap', (data) => {
+            $wire.on('updateMapNya', (data) => {
+                console.log("Data Petugas:", data);
+
                 // Bersihkan LayerGroup
                 markersGroup.clearLayers();
 
-                // Ambil koordinat dari data
-                var coordinates = data[0].map(item => ({
-                    lat: parseFloat(item.latitude),
-                    lng: parseFloat(item.longitude)
-                }));
+                // Periksa apakah data adalah array bersarang
+                data.forEach(function(group) { // group adalah array dalam array
+                    group.forEach(function(item) { // item adalah objek dalam array
+                        console.log("Lat:", item.lat, "Lng:", item.lng);
 
-                // Tambahkan marker dengan event click
-                coordinates.forEach(function(coord) {
-                    var marker2 = L.marker([coord.lat, coord.lng]);
+                        // Pastikan lat dan lng valid
+                        var lat = parseFloat(item.lat);
+                        var lng = parseFloat(item.lng);
 
-                    // Tambahkan event listener klik ke marker
-                    marker2.on('click', function() {
-                        var lat = coord.lat;
-                        var lng = coord.lng;
+                        // Periksa jika lat dan lng valid dan bukan NaN
+                        if (!isNaN(lat) && !isNaN(lng)) {
+                            var marker = L.marker([lat, lng]) // Gunakan lat dan lng yang valid
+                                .bindTooltip(item.name, { // Menambahkan tooltip
+                                    permanent: false, // Tooltip hanya muncul saat hover
+                                    direction: 'top' // Tooltip muncul di atas marker
+                                })
+                                .addTo(markersGroup);
 
-                        // URL Google Maps
-                        var googleMapsUrl = `https://www.google.com/maps?q=${lat},${lng}`;
-                        window.open(googleMapsUrl, '_blank');
+                            // Tambahkan event klik untuk membuka Google Maps
+                            marker.on('click', function() {
+                                var googleMapsUrl =
+                                    `https://www.google.com/maps?q=${lat},${lng}`;
+                                window.open(googleMapsUrl, '_blank');
+                            });
+                        } else {
+                            console.log("Koordinat tidak valid:", item); // Log jika lat/lng tidak valid
+                        }
                     });
-
-                    // Tambahkan marker ke LayerGroup
-                    markersGroup.addLayer(marker2);
                 });
             });
+
+
+
+
+
 
 
 
@@ -643,39 +715,56 @@
                 // Kosongkan semua layer GeoJSON yang ada sebelumnya
                 geojsonLayers.clearLayers();
 
-                // Opsi untuk layer GeoJSON
-                var options = {
+                // Tambahkan GeoJSON FeatureCollection ke layer group dengan style berdasarkan area_type
+                const geojsonLayer = L.geoJson(geojsonCollection, {
                     maxZoom: 16,
                     tolerance: 3,
                     debug: 0,
-                    style: {
-                        color: "#FF0000", // Garis berwarna merah
-                        weight: 3, // Ketebalan garis
-                        fill: true, // Isian diaktifkan
-                        fillOpacity: 0.2, // Transparansi isian
+                    style: function(feature) {
+                        // Tentukan warna berdasarkan properties area_type
+                        const areaType = feature.properties.area_type;
+                        if (areaType === 'inside') {
+                            return {
+                                color: "#00FF00", // Garis hijau untuk inside
+                                weight: 3, // Ketebalan garis
+                                fill: true, // Isian diaktifkan
+                                fillColor: "#00FF00", // Isian hijau untuk inside
+                                fillOpacity: 1, // Transparansi isian
+                            };
+                        } else {
+                            return {
+                                color: "#0000FF", // Garis biru untuk outside
+                                weight: 3, // Ketebalan garis
+                                fill: true, // Isian diaktifkan
+                                fillColor: "#FF0000", // Isian merah untuk outside
+                                fillOpacity: 0.09, // Transparansi isian
+                            };
+                        }
                     },
                     onEachFeature: function(feature, layer) {
                         // Buat konten tooltip menggunakan properties dari setiap fitur
                         const tooltipContent = `
-                            ${feature.properties.kdkab} ${feature.properties.nmkab}<br>
-                            ${feature.properties.kdkec} ${feature.properties.nmkec}<br>
-                            ${feature.properties.kdsls} ${feature.properties.nmsls}<br>
-                            ${feature.properties.kddesa} ${feature.properties.nmdesa}<br>
-                            PPL: ${feature.properties.name}<br>
-                            <b>ID SLS:</b> ${feature.properties.idsls}
-                        `;
+                ${feature.properties.kdkab} ${feature.properties.nmkab}<br>
+                ${feature.properties.kdkec} ${feature.properties.nmkec}<br>
+                ${feature.properties.kdsls} ${feature.properties.nmsls}<br>
+                ${feature.properties.kddesa} ${feature.properties.nmdesa}<br>
+                PPL: ${feature.properties.name}<br>
+                <b>ID SLS:</b> ${feature.properties.idsls}
+            `;
                         // Tambahkan tooltip ke layer
                         layer.bindTooltip(tooltipContent, {
                             permanent: false, // Tooltip hanya muncul saat dihover
                             direction: "top", // Arah munculnya tooltip
                         });
-
                     },
-                };
+                });
 
-                // Tambahkan GeoJSON FeatureCollection ke layer group
-                const geojsonLayer = L.geoJson(geojsonCollection, options);
+                // Tambahkan layer ke grup layer
                 geojsonLayers.addLayer(geojsonLayer);
+            });
+
+            $wire.on('geojsonLoaded', (geojsonCollection) => {
+                console.log('masuk juga')
             });
         </script>
     @endscript

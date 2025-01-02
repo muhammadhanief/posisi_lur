@@ -10,7 +10,6 @@ use App\Models\PetugasLocation;
 use App\Models\UsersKegiatan;
 use App\Models\WilayahTerkecil;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 
 
 use Illuminate\Support\Facades\File;
@@ -56,26 +55,6 @@ class First extends Component
         $this->coba();
     }
 
-    // public function updatedSelectedKodeKegiatan()
-    // {
-    //     // Ambil semua kode_kegiatan
-    //     $allKodeKegiatan = Kegiatan::pluck('id')->toArray();
-
-    //     // Jika semua kode_kegiatan ada di selectedKodeKegiatan, maka selectAllKodeKegiatan = true, jika tidak maka false
-    //     $this->selectAllKodeKegiatan = count($this->selectedKodeKegiatan) === count($allKodeKegiatan);
-
-    //     // Untuk update model wilayahterkecil terpilih
-    //     $this->selectedKodeWilayahTerkecilModel = UsersKegiatan::whereIn('kegiatan_id', $this->selectedKodeKegiatan)
-    //         ->whereIn(DB::raw('SUBSTRING(kd_full, 3, 2)'), $this->selectedKodeKabkota)
-    //         ->get();
-
-    //     // Ambil nilai kd_full dan isi ke properti selectedKodeWilayahTerkecil
-    //     $this->selectedKodeWilayahTerkecil = $this->selectedKodeWilayahTerkecilModel->pluck('kd_full')->toArray();
-
-    //     // memanggil ke peta
-    //     $this->coba();
-    // }
-
     public function isAllChecked()
     {
         // Pastikan kedua properti tidak null
@@ -116,26 +95,6 @@ class First extends Component
     }
 
 
-    // public function updatedSelectAllKodeKabkota()
-    // {
-    //     if ($this->selectAllKodeKabkota) {
-    //         $this->selectedKodeKabkota = Kabkot::pluck('kd_kabkot')->toArray();
-    //     } else {
-    //         $this->selectedKodeKabkota = [];
-    //     }
-
-    //     // Untuk update model wilayahterkecil terpilih
-    //     $this->selectedKodeWilayahTerkecilModel = UsersKegiatan::whereIn('kegiatan_id', $this->selectedKodeKegiatan)
-    //         ->whereIn(DB::raw('SUBSTRING(kd_full, 3, 2)'), $this->selectedKodeKabkota)
-    //         ->get();
-
-    //     // Ambil nilai kd_full dan isi ke properti selectedKodeWilayahTerkecil
-    //     $this->selectedKodeWilayahTerkecil = $this->selectedKodeWilayahTerkecilModel->pluck('kd_full')->toArray();
-
-    //     // memanggil ke peta
-    //     $this->coba();
-    // }
-
     public function updatedSelectAllKodeKabkota()
     {
         if ($this->selectAllKodeKabkota) {
@@ -160,61 +119,9 @@ class First extends Component
             return; // Hentikan eksekusi jika syarat tidak terpenuhi
         }
 
-        // Memanggil ke peta
-        $this->coba();
+        $this->updatedSelectedKodeKabkota();
     }
 
-
-    // public function updatedSelectedKodeKabkota()
-    // {
-    //     // Ambil semua kode_kabkota
-    //     $allKodeKabkota = Kabkot::pluck('kd_kabkot')->toArray();
-
-    //     // Jika semua kode_kabkota ada di selectedKodeKabkota, maka selectAllKodeKabkota = true, jika tidak maka false
-    //     $this->selectAllKodeKabkota = count($this->selectedKodeKabkota) === count($allKodeKabkota);
-
-    //     // Untuk update model wilayahterkecil terpilih
-    //     $this->selectedKodeWilayahTerkecilModel = UsersKegiatan::whereIn('kegiatan_id', $this->selectedKodeKegiatan)
-    //         ->whereIn(DB::raw('SUBSTRING(kd_full, 3, 2)'), $this->selectedKodeKabkota)
-    //         ->get();
-
-    //     // Ambil nilai kd_full dan isi ke properti selectedKodeWilayahTerkecil
-    //     $this->selectedKodeWilayahTerkecil = $this->selectedKodeWilayahTerkecilModel->pluck('kd_full')->toArray();
-
-    //     // memanggil ke peta
-    //     $this->coba();
-    // }
-
-    // public function updatedSelectedKodeKabkota()
-    // {
-    //     // Pastikan selectedKodeKabkota adalah array
-    //     $this->selectedKodeKabkota = is_array($this->selectedKodeKabkota) ? $this->selectedKodeKabkota : [$this->selectedKodeKabkota];
-
-    //     // Ambil semua kode_kabkota
-    //     $allKodeKabkota = Kabkot::pluck('kd_kabkot')->toArray();
-
-    //     // Jika semua kode_kabkota ada di selectedKodeKabkota, maka selectAllKodeKabkota = true, jika tidak maka false
-    //     $this->selectAllKodeKabkota = count($this->selectedKodeKabkota) === count($allKodeKabkota);
-
-    //     // Pastikan selectedKodeKegiatan adalah array
-    //     $selectedKodeKegiatanArray = is_array($this->selectedKodeKegiatan) ? $this->selectedKodeKegiatan : [$this->selectedKodeKegiatan];
-
-    //     // Untuk update model wilayahterkecil terpilih
-    //     $this->selectedKodeWilayahTerkecilModel = UsersKegiatan::whereIn('kegiatan_id', $selectedKodeKegiatanArray)
-    //         ->whereIn(DB::raw('SUBSTRING(kd_full, 3, 2)'), $this->selectedKodeKabkota)
-    //         ->get();
-
-    //     // Ambil nilai kd_full dan isi ke properti selectedKodeWilayahTerkecil
-    //     $this->selectedKodeWilayahTerkecil = $this->selectedKodeWilayahTerkecilModel->pluck('kd_full')->toArray();
-
-    //     // Periksa apakah semua syarat terpenuhi
-    //     if (!$this->isAllChecked()) {
-    //         return; // Hentikan eksekusi jika syarat tidak terpenuhi
-    //     }
-
-    //     // Memanggil ke peta
-    //     $this->coba();
-    // }
 
     public function updatedSelectedKodeKabkota()
     {
@@ -239,9 +146,6 @@ class First extends Component
             ->pluck('kd_full')
             ->toArray();
 
-        // $activities = Activity::all();
-        // dd($activities);
-
         // Ambil wilayah outside_area: Wilayah tanpa memeriksa tabel activities
         $outsideArea = UsersKegiatan::whereIn('kegiatan_id', $selectedKodeKegiatanArray)
             ->whereIn(DB::raw('SUBSTRING(kd_full, 3, 2)'), $this->selectedKodeKabkota)
@@ -259,8 +163,6 @@ class First extends Component
             'outside_area' => $outsideArea,
         ];
 
-        dd($this->selectedKodeWilayahTerkecil);
-
         // Periksa apakah semua syarat terpenuhi
         if (!$this->isAllChecked()) {
             return; // Hentikan eksekusi jika syarat tidak terpenuhi
@@ -269,31 +171,6 @@ class First extends Component
         // Memanggil ke peta
         $this->coba();
     }
-
-
-    // public function updatedSelectAllKodeTim()
-    // {
-    //     if ($this->selectAllKodeTim) {
-    //         $this->selectedKodeTim = PetugasLocation::selectRaw('LEFT(kode_petugas, 1) as digit')
-    //             ->distinct()
-    //             ->pluck('digit')
-    //             ->toArray();
-    //     } else {
-    //         $this->selectedKodeTim = [];
-    //     }
-    // }
-
-    // public function updatedSelectedKodeTim()
-    // {
-    //     // Ambil semua digit dari kolom kode_petugas
-    //     $allKodeTim = PetugasLocation::selectRaw('LEFT(kode_petugas, 1) as digit')
-    //         ->distinct()
-    //         ->pluck('digit')
-    //         ->toArray();
-
-    //     // Jika semua kode tim ada di selectedKodeTim, maka selectAllKodeTim = true, jika tidak maka false
-    //     $this->selectAllKodeTim = count($this->selectedKodeTim) === count($allKodeTim);
-    // }
 
     public function getFilteredResults()
     {
@@ -336,12 +213,15 @@ class First extends Component
 
     public function coba()
     {
-        // Mengambil semua nilai kd_full dan menyimpannya dalam array
-        $wilayah_terkecils = $this->selectedKodeWilayahTerkecil;
+        // Mengambil nilai inside_area dan outside_area
+        $insideArea = $this->selectedKodeWilayahTerkecil['inside_area'] ?? [];
+        $outsideArea = $this->selectedKodeWilayahTerkecil['outside_area'] ?? [];
+
+        // dd($insideArea, $outsideArea, 'bro');
 
         // Cek apakah array kosong
-        if (empty($wilayah_terkecils)) {
-            // Jika kosong, lakukan sesuatu, misalnya keluar dari fungsi atau kirim data kosong
+        if (empty($insideArea) && empty($outsideArea)) {
+            // Jika kosong, kirim data GeoJSON kosong
             $this->dispatch('geojsonLoaded', [
                 'type' => 'FeatureCollection',
                 'features' => []
@@ -349,87 +229,81 @@ class First extends Component
             return;
         }
 
-        // yang udahs ama petugas
-        $geojson = DB::select(
-            "
+        // Ambil GeoJSON untuk area inside
+        $geojsonInside = [];
+        if (!empty($insideArea)) {
+            $geojsonInside = DB::select(
+                "
             SELECT jsonb_build_object(
                 'type', 'Feature',
                 'geometry', ST_AsGeoJSON(wkb_geometry)::jsonb,
-                'properties', to_jsonb(peta) - 'wkb_geometry' || jsonb_build_object('name', users.name)
+                'properties', to_jsonb(peta) - 'wkb_geometry' || jsonb_build_object('name', users.name, 'area_type', 'inside', 'idsls', idsls)
             ) AS geojson
             FROM peta
             LEFT JOIN users_kegiatans ON users_kegiatans.kd_full = peta.idsls
             LEFT JOIN users ON users.id = users_kegiatans.user_id
-            WHERE idsls IN (" . implode(',', array_fill(0, count($wilayah_terkecils), '?')) . ")",
-            $wilayah_terkecils
+            WHERE idsls IN (" . implode(',', array_fill(0, count($insideArea), '?')) . ")",
+                $insideArea
+            );
+        }
+
+        // Ambil GeoJSON untuk area outside
+        $geojsonOutside = [];
+        if (!empty($outsideArea)) {
+            $geojsonOutside = DB::select(
+                "
+            SELECT jsonb_build_object(
+                'type', 'Feature',
+                'geometry', ST_AsGeoJSON(wkb_geometry)::jsonb,
+                'properties', to_jsonb(peta) - 'wkb_geometry' || jsonb_build_object('name', users.name, 'area_type', 'outside', 'idsls', idsls)
+            ) AS geojson
+            FROM peta
+            LEFT JOIN users_kegiatans ON users_kegiatans.kd_full = peta.idsls
+            LEFT JOIN users ON users.id = users_kegiatans.user_id
+            WHERE idsls IN (" . implode(',', array_fill(0, count($outsideArea), '?')) . ")",
+                $outsideArea
+            );
+        }
+
+        // Gabungkan hasil GeoJSON dari inside dan outside
+        $geojson = array_merge(
+            array_map(fn($row) => json_decode($row->geojson, true), $geojsonInside),
+            array_map(fn($row) => json_decode($row->geojson, true), $geojsonOutside)
         );
 
-        // Ubah hasil query menjadi array GeoJSON
-        $features = array_map(fn($row) => json_decode($row->geojson, true), $geojson);
 
         // Bungkus dalam GeoJSON FeatureCollection
         $featureCollection = [
             'type' => 'FeatureCollection',
-            'features' => $features,
+            'features' => $geojson,
         ];
-        // dd($featureCollection);
-
         $this->dispatch('geojsonLoaded', $featureCollection);
+        // $this->dispatch('odading');
+        $this->markerPetugas();
     }
 
 
-    public function updatedSelectedKodeSls()
+    public function markerPetugas()
     {
-        // dd($this->selectedKodeSls);
-        $this->dispatch('updateGeojsonLayers', $this->selectedKodeSls);
-        // $this->dispatch('updateGeojsonLayers', ['filtered_sls.geojson']);
-    }
+        $activities = Activity::with('usersKegiatan.user') // Memuat relasi sampai ke tabel User
+            ->select('id', 'users_kegiatan_id', 'lat', 'lng', 'created_at')
+            // ->where('is_in_area', true) // Menambahkan kondisi untuk is_in_area yang true
+            ->whereRaw('id IN (SELECT MAX(id) FROM activities GROUP BY users_kegiatan_id)')
+            ->get();
 
-    // coba tampilkan hanya peta ybs
-    public function getPolygonsForAllUsers()
-    {
-        // Ambil daftar semua kd_full dari database
-        $kdFullList = WilayahTerkecil::where('kd_kabkot', 72)->get();
-        dd($kdFullList);
-        // Baca file GeoJSON
-        $geoJsonData = File::get(public_path('geojson/76.geojson'));
-        if (!File::exists(public_path('geojson/coba.geojson'))) {
-            dd('File tidak ditemukan');
-        }
-        // else {
-        //     dd('File ditemukan');
-        // }
-
-        $polygons = json_decode($geoJsonData, true); // Decode file GeoJSON
-
-
-        // Filter poligon yang memiliki kd_full yang cocok dengan kd_full di database
-        $filteredPolygons = array_filter($polygons['features'], function ($polygon) use ($kdFullList) {
-            return in_array($polygon['properties']['idsls'], $kdFullList);
+        $data = $activities->map(function ($activity) {
+            return [
+                'lat' => $activity->lat,
+                'lng' => $activity->lng,
+                'name' => $activity->usersKegiatan->user->name ?? 'Tidak diketahui', // Ambil nama user
+            ];
         });
+        // dd($data);
 
-        dd($filteredPolygons);
-        // $this->dispatch('updateGeojsonLayers', ['final_sls_202313374.geojson']);
-        // Kirim data poligon yang terfilter ke frontend
-        // return response()->json(['features' => array_values($filteredPolygons)]);
-        // dd(['filtered_sls.geojson']);
-        // $this->dispatch('updateGeojsonLayers', ['filtered_sls.geojson']);
-
-        // Baca file GeoJSON
-        // $geoJsonData = File::get(public_path('geojson/final_sls_202313374.geojson'));
-        // $geoJsonData = File::get(public_path('geojson/coba.geojson'));
-        // $polygons = json_decode($geoJsonData, true); // Decode file GeoJSON
-
-        // // Gunakan generator untuk memproses data dalam batch
-        // $filteredPolygons = [];
-        // foreach ($polygons['features'] as $polygon) {
-        //     if (in_array($polygon['properties']['idsls'], $kdFullList)) {
-        //         $filteredPolygons[] = $polygon;
-        //     }
-        // }
-
-        // dd($filteredPolygons);
+        $this->dispatch('updateMapNya', $data);
     }
+
+
 
     public function mount()
     {
@@ -450,8 +324,6 @@ class First extends Component
 
     public function render()
     {
-
-
         return view('livewire.first', [
             'kegiatans' => Kegiatan::all(),
             'kode_kabkotas' => Kabkot::all(),
@@ -461,7 +333,7 @@ class First extends Component
                 ->pluck('digit'),
             'kode_kegiatans' => PetugasLocation::select('kode_kegiatan')->distinct()->pluck('kode_kegiatan'),
             'filteredResults' => $this->getFilteredResults(),
-
+            'activities' => Activity::paginate(10),
         ]);
     }
 

@@ -12,6 +12,7 @@ class UsersKegiatan extends Model
     use HasFactory;
     protected $fillable = ['user_id', 'kegiatan_id', 'kd_full', 'hp_pml', 'petugas_id', 'tahun', 'tahun'];
 
+    // Relasi ke User
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
